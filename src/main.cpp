@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
@@ -10,13 +11,19 @@ int main() {
   constexpr std::size_t kScreenHeight{640};
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
-
+  constexpr bool kTwoPlayerMode{true};
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  Game game(kGridWidth, kGridHeight);
+  Game game(kGridWidth, kGridHeight, kTwoPlayerMode);
   game.Run(controller, renderer, kMsPerFrame);
   std::cout << "Game has terminated successfully!\n";
   std::cout << "Score: " << game.GetScore() << "\n";
   std::cout << "Size: " << game.GetSize() << "\n";
+
+  // Append the game record to a file.
+  std::ofstream ofs{"game_records.txt", std::ios::app};
+  ofs << "------------------------------------------------\n";
+  ofs << "Score: " << game.GetScore() << "\n";
+  ofs << "Size: " << game.GetSize() << "\n";
   return 0;
 }

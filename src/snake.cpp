@@ -77,3 +77,47 @@ bool Snake::SnakeCell(int x, int y) {
   }
   return false;
 }
+
+// Check if the snake has caught another snack
+bool Snake::CaughtSnake(Snake &other) {
+  if (SnakeCell(other.head_x, other.head_y))
+    return true;
+  return false;
+}
+
+void Snake::Devour(Snake &other) {
+  size += other.size;
+  auto lastPart = body.front();
+  switch (direction) {
+    case Direction::kUp:
+      for (int i = 1; i <= other.size; ++i) {
+        body.insert(body.begin(), SDL_Point{lastPart.x, lastPart.y - i});
+      }
+      break;
+
+    case Direction::kDown:
+      for (int i = 1; i <= other.size; ++i) {
+        body.insert(body.begin(), SDL_Point{lastPart.x, lastPart.y + i});
+      }
+      break;
+
+    case Direction::kLeft:
+      for (int i = 1; i <= other.size; ++i) {
+        body.insert(body.begin(), SDL_Point{lastPart.x + i, lastPart.y});
+      }
+      break;
+
+    case Direction::kRight:
+      for (int i = 1; i <= other.size; ++i) {
+        body.insert(body.begin(), SDL_Point{lastPart.x - i, lastPart.y});
+      }
+      break;
+  }
+}
+
+void Snake::Rebirth(SDL_Point point) {
+  head_x = point.x;
+  head_y = point.y;
+  size = 1;
+  body.clear();
+}

@@ -1,12 +1,19 @@
-# CPPND: Capstone Snake Game Example
+# CPPND: Capstone Catch the Snake Game
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+This is the repo for my Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
-<img src="snake_game.gif"/>
+My Extensions to the original repo:
+* You can play the game in Single Player Mode or Two Players Mode by changing the value of `kTwoPlayerMode` in `main.cpp`;
+* You can toggle pausing the game by pressing `SPACEBAR`.
+* You can restart a game by pressing key `N`.
+* In Two Players Mode, you can catch another snake by trapping it. As long as the other snake touches you with its head, you devour it and grow in size. The other snake would then regenerate and continue to play it.
+* Games records are written into a file.
+* When run with a little bit of luck (1 out of 5 times), two snakes will constantly have ten number of 'foods', i.e, an eating spree.
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
+Happy catching!
 
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+<img src="two_snakes.jpg"/>
+
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
